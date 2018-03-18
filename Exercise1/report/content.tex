@@ -2,16 +2,66 @@
 
 \subsection*{Part A}
 
+PEAS descriptions for a robot basketball player, industrial orange-apple sorter and a stock investor are given in Table \ref{table:peas}.
+
+\input{tables/peas}
+
+
+
 \subsection*{Part B}
+
+\textbf{Robot basketball player:} \textit{Simple reflex agents} cannot perform well in this partially observable, dynamic environment. An \textit{internal-state model} could be used, but we would need many states that are difficult to define in such a continuous-state environment. In addition, simply storing the current state of the system would not be enough for the player to decide its next course of action. Furthermore, a \textit{goal-based agent} would be inefficient since scoring is not the only goal in basketball. Therefore, \textit{a utility-based model} is deemed necessary to provide a more efficient performance measure in this multiagent environment. Online \textit{learning} could also be applied during the match, allowing adaptation against the opposing team. Its application however would be difficult without sacrificing (at least their initial) performance.
+
+\textbf{Industrial orange-apple sorter:} An \textit{internal-state model} would be enough for fruit classification based on the partially observable fruits and stochastic background (e.g. varying light in the room or existing branches/leaves). \textit{Learning} would be useful if we wanted our agent to classify more types of fruits in the future.
+
+\textbf{Stock investor:} Similar to a robot basketball player, this agent needs to consider not only its basic goal of maximizing its net profit (namely buying cheaply and selling expensively), but also other features such as credibility, financial forecasts and cooperation with other investors. Therefore, a \textit{utility-based agent} would again be more appropriate. \textit{Learning} could also be proven useful in adaptation against opposing agents and new financial, cultural and political conditions.
+
+
 
 \section*{Exercise 2}
 
 \subsection*{Part A}
 
+The solution is given in Figure \ref{fig:exercise2}.
+
+\begin{figure}[htpb]
+\centering
+\makebox[\textwidth]{%
+\includegraphics[width=0.3\textwidth, angle =-90, trim = 25mm 25mm 100mm 25mm,clip=true]{images/exercise2.pdf}}
+\caption{State space for states 1 to 15, starting from 1, while the successor function returning two states, $2n$ and $2n+1$.}
+\label{fig:exercise2}
+% Place the label just after the caption to make the link work
+\end{figure} % table makes a floating object with a title
+
 \subsection*{Part B}
+
+The order in which the nodes will be visited for each type of search is given below:
+
+\begin{itemize}
+
+\item Breadth-First Search: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+\item Depth-Limited Search (depth limit 3): 1, 2, 4, 8, 9, 5, 10, 11
+
+\item Iterative Deepening Search: (depth limit 0) 1 - (depth limit 1) 1, 2, 3 - (depth limit 2) 1, 2, 4, 5, 3, 6, 7 - (depth limit 3) 1, 2, 4, 8, 9, 5, 10, 11
+
+\end{itemize}
 
 \subsection*{Part C}
 
+Bidirectional search would be quite appropriate for this problem, since we could easily employ the inverse of the successor function for searching in the opposite direction (from goal to start state): $\lfloor n/2 \rfloor$. For example, the bidirectional search algorithm would work as follows:
+
+\begin{itemize}
+
+\item Search from start: 1, 2, 3
+
+\item Search from goal: 11, 5, (2)
+
+\end{itemize}
+
+The algorithm would terminate when the search from goal reaches node 2, which would have already been reached by the search from start. The final solution would therefore be 1, 2, 5, 11.
+
+Bidirectional search would actually allow us to avoid searching altogether because each node has only a single predecessor. Hence, the solution could simply be found in $\log_2{n}$ steps.
 
 \section*{Exercise 3}
 
