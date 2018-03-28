@@ -15,9 +15,13 @@ Figure \ref{fig:exercise1} depicts the game tree.
 
 \section*{Exercise 4}
 
-As explained in Exercise 1, the minimax algorithm guarantees the optimal solution for the MAX player given that both players make optimal decisions. Assuming that the MIN player chooses a suboptimal action instead, then the value of the respective MIN node (and thus the resulting minimax value of its parental MAX node, and inductively for the whole game tree) cannot decrease because the optimal action already led to the minimum value.
+As explained in Exercise 1, the minimax algorithm guarantees the optimal solution for the MAX player given that both players make optimal decisions. Assuming that the MIN player chooses a suboptimal action instead, then the value of the respective MIN node (and thus the resulting minimax value of its parental MAX node, and inductively for the whole game tree) cannot decrease because the optimal action already led to the minimum value. The same argument can be expanded inductively to prove the assertion.
 
-For example, in Figure \ref{fig:exercise1} let us assume that the MIN player always selects the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
+Giving an example, in Figure \ref{fig:exercise1} let us assume that the MIN player always selects the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
+
+\section*{Exercise 3}
+
+
 
 %\section*{Exercise 1}
 %
