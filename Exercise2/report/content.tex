@@ -19,9 +19,17 @@ As explained in Exercise 1, the minimax algorithm guarantees the optimal solutio
 
 Giving an example, in Figure \ref{fig:exercise1} let us assume that the MIN player always selects the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
 
+\section*{Exercise 2}
+
+Given a binary mask $M$ and two parental solutions $A$ and $B$, their offspring $C$ produced by the genetic algorithm will inherit the value $A_i$ for each $M_i = 0$ and $B_j$ for each $M_j = 1$, where $i,j$ are indices of $A, B, M, C$. Therefore, for $A=00110101$ and $B=11010100$ the offsprings would be:
+
+a) $ M=00000111 \Rightarrow C =  00110100$
+
+b) $ M=00111000 \Rightarrow C = 00010101$
+
+c) $ M=00110110 \Rightarrow C = 00010101$
+
 \section*{Exercise 3}
-
-
 
 %\section*{Exercise 1}
 %
