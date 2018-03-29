@@ -13,12 +13,6 @@ Figure \ref{fig:exercise1} depicts the game tree.
 
 \input{images/exercise1}
 
-\section*{Exercise 4}
-
-As explained in Exercise 1, the minimax algorithm guarantees the optimal solution for the MAX player given that both players make optimal decisions. Assuming that the MIN player chooses a suboptimal action instead, then the value of the respective MIN node (and thus the resulting minimax value of its parental MAX node, and inductively for the whole game tree) cannot decrease because the optimal action already led to the minimum value. The same argument can be expanded inductively to prove the assertion.
-
-Giving an example, in Figure \ref{fig:exercise1} let us assume that the MIN player always selects the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
-
 \section*{Exercise 2}
 
 Given a binary mask $M$ and two parental solutions $A$ and $B$, their offspring $C$ produced by the genetic algorithm will inherit the value $A_i$ for each $M_i = 0$ and $B_j$ for each $M_j = 1$, where $i,j$ are indices of $A, B, M, C$. Therefore, for $A=00110101$ and $B=11010100$ the offsprings would be:
@@ -39,9 +33,9 @@ First, we need to consider that Part B requires a binary constraint satisfaction
 
 \item We can see from the data that $\sum_{i=1}^{12} f(T_i)=120$, in other words the company needs 120 offices in total. Given that each floor can provide at most 40 offices, each floor must have all its offices occupied (otherwise the sum of occupied offices will not be 120 and consequently not all departments will be housed).
 
-\item Since each floor will have exactly 40 occupied offices, we can easily find the lower and upper bound for the number of departments per floor. By summing the offices of the three largest departments ($f(T_3)+f(T_4)+f(T_6)=36$), we deduce that each floor will have $\ge$4 departments. Moreover, if a floor houses $>$4 departments, then at least one floor must have $<$4 departments, which is a contradiction. Therefore, each floor will house exactly 4 departments.
+\item Since each floor will have exactly 40 occupied offices, we can easily find the lower and upper bound for the number of departments per floor. By summing the offices of the three largest departments ($f(T_3)+f(T_4)+f(T_6)=36$), we deduce that each floor must $\ge$4 departments. Moreover, if a floor houses $>$4 departments, then at least one floor must have $<$4 departments, which is a contradiction. Therefore, each floor will house exactly 4 departments.
 
-\item We know that some departments should be on the same floor ($f(T_1)$ with $f(T_3)$, $f(T_2)$ with $f(T_4)$, $f(T_8)$ with $f(T_9)$). Since no combination of these pairs can occupy exactly 40 offices ($f(T_1)+f(T_3)+f(T_2)+f(T_4) = 39$, $f(T_1)+f(T_3)+f(T_8)+f(T_9) = 38$ and $f(T_2)+f(T_4)+f(T_8)+f(T_9) = 37$), we conclude that each pair should be assigned to a different floor.
+\item We know that some departments should be on the same floor ($T_1$ with $T_3$, $T_2$ with $T_4$, $T_8$ with $T_9$). Since no combination of these pairs can occupy exactly 40 offices ($f(T_1)+f(T_3)+f(T_2)+f(T_4) = 39$, $f(T_1)+f(T_3)+f(T_8)+f(T_9) = 38$ and $f(T_2)+f(T_4)+f(T_8)+f(T_9) = 37$), we conclude that each pair should be assigned to a different floor.
 
 \end{enumerate}
 
@@ -58,7 +52,18 @@ We are now able to define the binary CSP problem. Let $X_i \in \{T_5, T_6, T_7, 
 
 \subsection*{Part B}
 
-The aforementioned constraint equations contain 30 arcs in total (since all nodes of its graph representation are connected). 
+\input{tables/ac3}
+
+The aforementioned constraint equations contain 30 arcs in total (since all nodes of its undirected graph representation are connected with each other and arcs are directed). Assume that the queue of arcs given (as input) to AC-3 is $[(X_1 \ne X_2) \cap (f(X_1) + f(X_2) = 20), (X_3 \ne X_4) \cap (f(X_3) + f(X_4) = 21), (X_5 \ne X_6) \cap (f(X_5) + f(X_6) = 22), X_1 \ne X_3, X_1 \ne X_4, ..., X_4 \ne X_6]$.
+
+Then the first iteration of AC-3 is to remove the first arc (and its reverse) and check each value in the domain of $X_1$ (and $X_2$ respectively) for inconsistencies. The updated domain is then $X_1, X_2 \in \{T_5, T_7, T_{10}, T_{11}, T_{12}\}$. Since the domain of $X_1$ (the same applies for $X_2$) have been updated, each arc ($X_k$,$X_1$), $k\ne1$ need to be added in the queue for rechecking (in the first iteration all these arcs are already in the queue). The following iterations continue in a similar fashion until either the queue (success) or a domain (failure) is empty. Table \ref{table:ac3} shows how the domain is updated for the first three (six if we count the reverse arcs separately) iterations of the algorithm.
+
+
+\section*{Exercise 4}
+
+As explained in Exercise 1, the minimax algorithm guarantees the optimal solution for the MAX player given that both players make optimal decisions. Assuming that the MIN player chooses a suboptimal action instead, then the value of the respective MIN node (and thus the resulting minimax value of its parental MAX node, and inductively for the whole game tree) cannot decrease because the optimal action already led to the minimum value. The same argument can be expanded inductively to prove the assertion.
+
+Giving an example, in Figure \ref{fig:exercise1} let us assume that the MIN player always selects the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
 
 
 %\section*{Exercise 1}
