@@ -31,6 +31,36 @@ c) $ M=00110110 \Rightarrow C = 00010101$
 
 \section*{Exercise 3}
 
+\subsection*{Part A}
+
+First, we need to consider that Part B requires a binary constraint satisfaction problem (CSP) because the AC-3 algorithm can only be used with binary constraints. Let $f(T_i)$ be the number of offices of department $T_i$, then the following observations lead to such a binary CSP formulation:
+
+\begin{enumerate}
+
+\item We can see from the data that $\sum_{i=1}^{12} f(T_i)=120$, in other words the company needs 120 offices in total. Given that each floor can provide at most 40 offices, each floor must have all its offices occupied (otherwise the sum of occupied offices will not be 120 and consequently not all departments will be housed).
+
+\item Since each floor will have exactly 40 occupied offices, we can easily find the lower and upper bound for the number of departments per floor. By summing the offices of the three largest departments ($f(T_3)+f(T_4)+f(T_6)=36$), we deduce that each floor will have $\ge$4 departments. Moreover, if a floor houses $>$4 departments, then at least one floor must have $<$4 departments, which is a contradiction. Therefore, each floor will house exactly 4 departments.
+
+\item We know that some departments should be on the same floor ($f(T_1)$ with $f(T_3)$, $f(T_2)$ with $f(T_4)$, $f(T_8)$ with $f(T_9)$). Since no combination of these pairs can occupy exactly 40 offices ($f(T_1)+f(T_3)+f(T_2)+f(T_4) = 39$, $f(T_1)+f(T_3)+f(T_8)+f(T_9) = 38$ and $f(T_2)+f(T_4)+f(T_8)+f(T_9) = 37$), we conclude that each pair should be assigned to a different floor.
+
+\end{enumerate}
+
+We are now able to define the binary CSP problem. Let $X_i \in \{T_5, T_6, T_7, T_{10}, T_{11}, T_{12}\}$, $i \in \{1, 2, 3, 4, 5, 6\}$ be the remaining departments to be allocated, then the binary constraints will be:
+
+\[
+	\begin{array}{ll}
+		X_i \ne X_j, \forall (i,j) : i \ne j \\
+		f(X_1) + f(X_2) + f(T_1) + f(T_3) = 40 \Rightarrow f(X_1) + f(X_2) = 20 \\
+		f(X_3) + f(X_4) + f(T_2) + f(T_4) = 40 \Rightarrow f(X_3) + f(X_4) = 21 \\
+		f(X_5) + f(X_6) + f(T_8) + f(T_9) = 40 \Rightarrow f(X_3) + f(X_4) = 22
+	\end{array}
+\]
+
+\subsection*{Part B}
+
+The aforementioned constraint equations contain 30 arcs in total (since all nodes of its graph representation are connected). 
+
+
 %\section*{Exercise 1}
 %
 %\subsection*{Part A}
