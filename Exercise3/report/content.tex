@@ -61,7 +61,7 @@ The sentence is \textit{satisfiable} (see truth table).
 \subsection*{Sentence D}
 
 $Fire \lor \neg Fire \equiv true$ (law of excluded middle), therefore the sentence is \textit{valid}:
-
+\smallskip
 \begin{gather*}
 Smoke \lor Fire \lor \neg Fire \equiv \\
 Smoke \lor true \equiv \\
@@ -138,6 +138,31 @@ $true$ & $false$ & $false$ \\
 \end{center}
 
 Therefore the sentence is \textit{satisfiable}.
+
+\section*{Exercise 2}
+
+Let $A$ be a sentence, and $W_1,...,W_n$ the worlds in which A would be false. Then the given observation is:
+\smallskip
+\begin{gather}
+A \equiv \neg W_1 \land ... \land \neg W_n
+\end{gather}
+
+Each world $W_i$ can be described as a conjunction of sentences, namely: 
+\smallskip
+\begin{gather}
+W_i \equiv W_{i,1} \land ... \land W_{i,m}
+\end{gather}
+
+From (1)$\land$(2):
+\smallskip
+\begin{gather*}
+A \equiv \\ 
+\neg (W_{1,1} \land ... \land W_{1,k}) \land ... \land \neg (W_{n,1} \land ... \land W_{n,l}) \equiv \\
+(\neg W_{1,1} \lor ... \lor \neg W_{1,k}) \land ... \land (\neg W_{n,1} \lor ... \lor \neg W_{n,l})
+\end{gather*}
+
+which is in CNF.
+
 
 %\section*{Exercise 1}
 %\label{sec:exercise1}
