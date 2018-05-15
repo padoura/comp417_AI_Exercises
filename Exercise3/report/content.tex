@@ -163,6 +163,85 @@ A \equiv \\
 
 which is in CNF.
 
+\section*{Exercise 3}
+
+The vocabulary of the first order logic expressions contains the following predicates and constants:
+
+\begin{itemize}
+
+\item $Student(x)$: $x$ is a student
+
+\item $Takes(x, c, s)$: student $x$ takes course $c$ in semester $s$ (used in both present and past tense)
+
+\item $French$, $Greek$: constants for the corresponding courses
+
+\item $Spring2001$: constant for the corresponding semester
+
+\item $Passes(x, c, s)$: student $x$ passes course $c$ in semester $s$
+
+\item $Score(x, c, s)$: the score obtained by student $x$ in course $c$ in semester $s$
+
+\item $>(a, b)$: a is greater than b
+
+\item $Person(x)$: $x$ is a person
+
+\item $Policy(x)$: $x$ is a policy
+
+\item $Buys(x, p, a)$: person $x$ buys policy $p$ from agent $a$
+
+\item $Smart(x)$: $x$ is smart
+
+\item $Expensive(x)$: $x$ is expensive
+
+\item $Sells(a, p, x)$: agent $a$ sells policy $p$ to person $x$
+
+\item $Agent(x)$: $x$ is an agent
+
+\item $Insured(x)$: $x$ is insured
+
+\end{itemize} 
+
+\subsection*{Sentence A}
+
+\begin{gather*}
+\exists x \ Student(x) \land Takes(x, French, Spring2001)
+\end{gather*}
+
+\subsection*{Sentence B}
+
+\begin{gather*}
+\forall x, s \ Student(x) \land Takes(x, French, s) \implies Passes(x, French, s)
+\end{gather*}
+
+\subsection*{Sentence C}
+
+\begin{gather*}
+\exists x \forall y \ Student(x) \land Takes(x, Greek, Spring2001) \land \neg (y=x) \implies \neg Takes(y, Greek, Spring2001)
+\end{gather*}
+
+\subsection*{Sentence D}
+
+\begin{gather*}
+\exists x \ \forall y, s \ >(Score(x, Greek, s), Score(y, French, s)) 
+\end{gather*}
+
+\subsection*{Sentence E}
+
+\begin{gather*}
+\forall x \ Person(x) \land (\exists p, a \ Policy(p) \land Buys(x, p, a)) \implies Smart(x)
+\end{gather*}
+
+\subsection*{Sentence F}
+
+\begin{gather*}
+\forall x, p, a \ Person(x) \land Expensive(p) \land Policy(p) \implies \neg Buys(x, p, a)
+\end{gather*}
+
+\subsection*{Sentence G}
+
+\begin{gather*}
+\exists a \ \forall p, x \ Agent(a) \land Policy(p) \land Sells(a, p, x) \implies (Person(x) \land \neg Insured(x))
+\end{gather*}
 
 %\section*{Exercise 1}
 %\label{sec:exercise1}
