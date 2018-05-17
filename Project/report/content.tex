@@ -1,167 +1,34 @@
-\section*{Exercise 1}
-\label{sec:exercise1}
+\section{Introduction}
 
-\subsection*{Part A}
+The $n$-queens problem, a combinatorial search problem, concerns the non-attacking (horizontally, vertically, and diagonally) placement of $n$ queens on a $n\times n$ chessboard. The $n$-queens and similar Constraint Satisfaction Problems (CSPs) are classical examples of the limitations of simple backtracking search, with an exponential worst case performance that renders solving for large $n$ impractical \citep{sosic90, backtracking}. Although many efficient heuristics have already been proposed for this problem \citep{sosic91, hu03, aima, engel07, agarwal12}, it still is a popular test bed for new Artificial Intelligence (AI) search problem methods. Whilst a toy problem per se, it has found some practical applications such as VLSI routing and testing, data compression, maximum full range communication and parallel optical computing \citep{sosic91, hu03}.
 
-Using the minimax algorithm, we assume that both players play optimally (namely the MAX player maximizes his utility value, while the MIN player minimizes the same value). Furthermore, the algorithm performs a complete depth-first exploration of the corresponding game tree (Figure \ref{fig:exercise1}), assigning the minimum or maximum utility value out of all its children nodes as a minimax value to every MIN or MAX node respectively. 
+This problem has (at least) two variants depending on the desired number of solutions. A single solution can actually be found trivially without search, since explicit solutions exist $\forall \ n \ge 4$ \citep{trivial}. On the other hand, finding all possible solutions is non-trivial. In this project we will focus on the former variant, implementing and comparing the performance of two different search algorithms: a local search algorithm, and a constraint satisfaction method. We will first describe the problem mathematically and define the performance indicators for our comparison. In Section \ref{sec:methods} we will describe the implemented algorithms, and we will subsequently illustrate and discuss their performance.
 
-In this case, MIN nodes B, C, D and E would be given the values -12, -7, -9, 2 respectively, while the starting MAX node will take the maximum of these four values, namely 2. Therefore, the resulting optimal move for the MAX player would lead to E, and the optimal response by the MIN player would then lead to the terminal node with utility value 2.
+\section{Problem Formulation}
 
-\subsection*{Part B}
-
-Figure \ref{fig:exercise1} depicts the game tree.
-
-\input{images/exercise1}
-
-\section*{Exercise 2}
-
-Given a binary mask $M$ and two parental solutions $A$ and $B$, their offspring $C$ produced by the genetic algorithm will inherit the value $A_i$ for each $M_i = 0$ and $B_j$ for each $M_j = 1$, where $i,j$ are indices of $A, B, M, C$. Therefore, for $A=00110101$ and $B=11010100$ the offsprings would be:
-
-a) $ M=00000111 \Rightarrow C =  00110100$
-
-b) $ M=00111000 \Rightarrow C = 00010101$
-
-c) $ M=00110110 \Rightarrow C = 00010101$
-
-\section*{Exercise 3}
-
-\subsection*{Part A}
-
-First, we need to consider that Part B requires a binary constraint satisfaction problem (CSP) because the AC-3 algorithm can only be used with binary constraints. Let $f(T_i)$ be the number of offices of department $T_i$, then the following observations lead to such a binary CSP formulation:
-
-\begin{enumerate}
-
-\item We can see from the data that $\sum_{i=1}^{12} f(T_i)=120$, in other words the company needs 120 offices in total. Given that each floor can provide at most 40 offices, each floor must have all its offices occupied (otherwise the sum of occupied offices will not be 120 and consequently not all departments will be housed).
-
-\item Since each floor will have exactly 40 occupied offices, we can easily find the lower and upper bound for the number of departments per floor. By summing the offices of the three largest departments ($f(T_3)+f(T_4)+f(T_6)=36$), we deduce that each floor must have $\ge$4 departments. Moreover, if a floor houses $>$4 departments, then at least one floor must have $<$4 departments, which is a contradiction. Therefore, each floor will house exactly 4 departments.
-
-\item We know that some departments should be on the same floor ($T_1$ with $T_3$, $T_2$ with $T_4$, $T_8$ with $T_9$). Since no combination of these pairs can occupy exactly 40 offices ($f(T_1)+f(T_3)+f(T_2)+f(T_4) = 39$, $f(T_1)+f(T_3)+f(T_8)+f(T_9) = 38$ and $f(T_2)+f(T_4)+f(T_8)+f(T_9) = 37$), we conclude that each pair should be assigned to a different floor.
-
-\end{enumerate}
-
-We are now able to define the binary CSP problem. Let $X_i \in \{T_5, T_6, T_7, T_{10}, T_{11}, T_{12}\}$, $i \in \{1, 2, 3, 4, 5, 6\}$ be the remaining departments to be allocated, then the binary constraints will be:
-
-\[
-	\begin{array}{ll}
-		X_i \ne X_j, \forall (i,j) : i \ne j \\
-		f(X_1) + f(X_2) + f(T_1) + f(T_3) = 40 \Rightarrow f(X_1) + f(X_2) = 20 \\
-		f(X_3) + f(X_4) + f(T_2) + f(T_4) = 40 \Rightarrow f(X_3) + f(X_4) = 21 \\
-		f(X_5) + f(X_6) + f(T_8) + f(T_9) = 40 \Rightarrow f(X_5) + f(X_6) = 22
-	\end{array}
-\]
-
-\subsection*{Part B}
-
-\input{tables/ac3}
-
-The aforementioned constraint equations contain 30 arcs in total (since all nodes of its undirected graph representation are connected with each other and arcs are directed). Assume that the initial queue of arcs given to AC-3 is $[(X_1 \ne X_2) \cap (f(X_1) + f(X_2) = 20), (X_3 \ne X_4) \cap (f(X_3) + f(X_4) = 21), (X_5 \ne X_6) \cap (f(X_5) + f(X_6) = 22), X_1 \ne X_3, X_1 \ne X_4, ..., X_4 \ne X_6]$. Then the first iteration of AC-3 is to remove the first arc (and its reverse) and check each value in the domain of $X_1$ (and $X_2$ respectively) for inconsistencies. The updated domain is then $X_1, X_2 \in \{T_5, T_7, T_{10}, T_{11}, T_{12}\}$. Since the domain of $X_1$ (the same applies for $X_2$) has been updated, each arc ($X_k$,$X_1$), $k\ne1$ need to be added in the queue for rechecking (in the first iteration all these arcs are already in the queue).
-
-The following iterations continue in a similar fashion until either the queue (success) or a domain (failure) is empty. Table \ref{table:ac3} shows how the domain is updated for the first three (six if we count the reverse arcs separately) iterations of the algorithm.
+\subsection{Mathematical Model}
 
 
-\section*{Exercise 4}
 
-As explained in Exercise 1, the minimax algorithm guarantees the optimal solution for the MAX player given that both players make optimal decisions. Assuming that the MIN player chooses a suboptimal action instead, then the value of the respective MIN node (and thus the resulting minimax value of its parental MAX node) cannot decrease because the optimal action already led to the minimum value. The same argument can inductively be expanded to the whole game tree, proving the assertion.
-
-Giving an example, in Figure \ref{fig:exercise1} let the MIN player always select the second best available action. These suboptimal moves would then mean that the MAX player would receive 4, 0, -8 or 3 if he opted for B, C, D or E respectively. Since the optimal move found by minimax leads to E, the resulting value would increase from 2 to 3. However, moving to B would actually result in an even better value (4), thus illustrating that when the MAX player can predict a suboptimal play by MIN, there may be better strategies than following the minimax decision.
+\subsection{Performance Indicators}
 
 
-%\section*{Exercise 1}
-%
-%\subsection*{Part A}
-%
-%PEAS descriptions for a robot basketball player, industrial orange-apple sorter and a stock investor are given in Table \ref{table:peas}.
-%
-%\input{tables/peas}
-%
-%
-%\subsection*{Part B}
-%
-%Table \ref{table:environments} contains the environmental characteristics of the three aforementioned agent types. In the following paragraphs I select a suitable agent design, providing a brief explanation for each agent type.
-%
-%
-%\input{tables/environments}
-%
-%\textbf{Robot basketball player:} \textit{Simple reflex agents} cannot perform well in this partially observable, dynamic environment. An \textit{internal-state model} could be used, but we would need many states that are difficult to define in such a continuous-state environment. In addition, simply storing the current state of the system would not be enough for the player to decide its next course of action. Furthermore, a \textit{goal-based agent} would be inefficient since scoring is not the only goal in basketball. Therefore, \textit{a utility-based model} is deemed necessary to provide a more efficient performance measure in this multiagent environment. Online \textit{learning} could also be applied during the match, allowing adaptation against the opposing team. Its application however would be difficult without sacrificing (at least their initial) performance.
-%
-%\textbf{Industrial orange-apple sorter:} An \textit{internal-state model} would be enough for fruit classification based on the partially observable fruits and stochastic background (e.g. varying light in the room or existing branches/leaves). \textit{Learning} would be useful if we wanted our agent to classify more types of fruits in the future.
-%
-%\textbf{Stock investor:} Similar to a robot basketball player, this agent needs to consider not only its basic goal of maximizing its net profit (namely buying cheaply and selling expensively), but also other features such as credibility, financial forecasts and cooperation with other investors. Therefore, a \textit{utility-based agent} would again be more appropriate. \textit{Learning} could also be proven useful in adaptation against opposing agents and new financial, cultural and political conditions.
-%
-%
-%
-%\section*{Exercise 2}
-%
-%\subsection*{Part A}
-%
-%The solution is given in Figure \ref{fig:exercise2}.
-%
-%\begin{figure}[htpb]
-%\centering
-%\makebox[\textwidth]{%
-%\includegraphics[width=0.3\textwidth, angle =-90, trim = 25mm 25mm 100mm 25mm,clip=true]{images/exercise2.pdf}}
-%\caption{State space for states 1 to 15, starting from 1, while the successor function returning two states, $2n$ and $2n+1$.}
-%\label{fig:exercise2}
-%% Place the label just after the caption to make the link work
-%\end{figure} % table makes a floating object with a title
-%
-%\subsection*{Part B}
-%
-%The order in which the nodes will be visited for each type of search is given below:
-%
-%\begin{itemize}
-%
-%\item Breadth-First Search: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-%
-%\item Depth-Limited Search (depth limit 3): 1, 2, 4, 8, 9, 5, 10, 11
-%
-%\item Iterative Deepening Search: (depth limit 0) 1 - (depth limit 1) 1, 2, 3 - (depth limit 2) 1, 2, 4, 5, 3, 6, 7 - (depth limit 3) 1, 2, 4, 8, 9, 5, 10, 11
-%
-%\end{itemize}
-%
-%\subsection*{Part C}
-%
-%Bidirectional search would be quite appropriate for this problem, since we could easily employ the inverse of the successor function for searching in the opposite direction (from goal to start state): $\lfloor n/2 \rfloor$. For example, the bidirectional search algorithm would work as follows:
-%
-%\begin{itemize}
-%
-%\item Search from start: 1, 2, 3
-%
-%\item Search from goal: 11, 5, (2)
-%
-%\end{itemize}
-%
-%The algorithm would terminate when the search from goal reaches node 2, which would have already been reached by the search from start. The final solution would therefore be 1, 2, 5, 11.
-%
-%Simple search from goal to start would actually allow us to avoid searching altogether because each node has only a single predecessor. Hence, the solution could simply be found in $\log_2{n}$ steps.
-%
-%\section*{Exercise 3}
-%
-%The solution is given in Figure \ref{fig:exercise3}.
-%
-%\begin{sidewaysfigure}[htpb]
-%\centering
-%\makebox[\textwidth]{%
-%\includegraphics[width=0.55\textwidth, angle =-90, trim = 25mm 25mm 50mm 25mm,clip=true]{images/exercise3.pdf}}
-%\caption{Stages in an A* search from Lugoj to Bucharest. Nodes are labeled with $f = g+ h$ (black font), and with the selected order of expansion (red font). The sequence of states that are considered during each iteration consists of the current leaf nodes. The algorithm expands the leaf node with the lowest value of $f$, replacing it in the sequence with all its successors (to be considered for the following iteration). The optimal solution is depicted with red nodes and edges.}
-%\label{fig:exercise3}
-%% Place the label just after the caption to make the link work
-%\end{sidewaysfigure} % table makes a floating object with a title
-%
-%
-%\section*{Exercise 4}
-%
-%\subsection*{Part A}
-%
-%Since only one state ($k=1$) is stored in memory after each iteration, it is iteratively succeeded by its best neighboring state like in hill climbing. Hence, the local beam search algorithm with $k=1$ is a simple hill climbing algorithm.
-%
-%\subsection*{Part B}
-%
-%With temperature $T=0$, we can say that the probability $e^{\Delta E/T}=0$ when $\Delta E \le 0$, namely only better neighboring solutions are accepted. Therefore, simulated annealing with $T=0$ is a first choice hill climbing algorithm.
-%
-%\subsection*{Part C}
-%
-%If $N=1$, the population will consist of a single individual. Crossover will thus happen between (two copies of) that individual, resulting in the exact same solution. The random mutation mechanism will introduce a small number of point changes during each iteration, consequently turning genetic algorithm into a random walk.
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Min-Conflicts Algorithm}
+
+\subsection{Forward Checking with Most Restricted Value Algorithm}
+
+\section{Results}
+
+\section{Conclusions}
+
+
+
+
+
+
 
 
 

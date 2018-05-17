@@ -1,0 +1,290 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{none/global/}
+    \entry{sosic90}{article}{}
+      \name{author}{2}{}{%
+        {{hash=28b61dc13018891b4c376ed085148d7a}{%
+           family={Sosic},
+           familyi={S\bibinitperiod},
+           given={Rok},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c4dc2730298b29b552ad0703bda6b502}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{fullhash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{authornamehash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{authorfullhash}{37147a42c2bc1d6a81277612331eb111}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0163-5719}
+      \field{journaltitle}{SIGART Bull.}
+      \field{month}{10}
+      \field{number}{3}
+      \field{title}{A Polynomial Time Algorithm for the N-Queens Problem}
+      \field{volume}{1}
+      \field{year}{1990}
+      \field{pages}{7\bibrangedash 11}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1145/101340.101343
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/101340.101343
+      \endverb
+    \endentry
+    \entry{backtracking}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6fd752d9c2ce6ee2de6ae72a5204ae76}{%
+           family={Stone},
+           familyi={S\bibinitperiod},
+           given={Harold\bibnamedelima S},
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=40f218909b459fdc5fcd6a11e03a354f}{%
+           family={Stone},
+           familyi={S\bibinitperiod},
+           given={Janice\bibnamedelima M},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IBM}%
+      }
+      \strng{namehash}{8581d9fa1c470e9ab6aa37448ac407c6}
+      \strng{fullhash}{8581d9fa1c470e9ab6aa37448ac407c6}
+      \strng{authornamehash}{8581d9fa1c470e9ab6aa37448ac407c6}
+      \strng{authorfullhash}{8581d9fa1c470e9ab6aa37448ac407c6}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IBM Journal of Research and Development}
+      \field{number}{4}
+      \field{title}{Efficient search techniques - an empirical study of the N-Queens problem}
+      \field{volume}{31}
+      \field{year}{1987}
+      \field{pages}{464\bibrangedash 474}
+      \range{pages}{11}
+    \endentry
+    \entry{sosic91}{article}{}
+      \name{author}{2}{}{%
+        {{hash=28b61dc13018891b4c376ed085148d7a}{%
+           family={Sosic},
+           familyi={S\bibinitperiod},
+           given={Rok},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c4dc2730298b29b552ad0703bda6b502}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{fullhash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{authornamehash}{37147a42c2bc1d6a81277612331eb111}
+      \strng{authorfullhash}{37147a42c2bc1d6a81277612331eb111}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics}
+      \field{number}{6}
+      \field{title}{Fast search algorithms for the n-queens problem}
+      \field{volume}{21}
+      \field{year}{1991}
+      \field{pages}{1572\bibrangedash 1576}
+      \range{pages}{5}
+    \endentry
+    \entry{hu03}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=9fb300e9c1bce6b8b25b7a0c31b809cd}{%
+           family={Hu},
+           familyi={H\bibinitperiod},
+           given={Xiaohui},
+           giveni={X\bibinitperiod}}}%
+        {{hash=fd08f5336d046155820e1babf0b16946}{%
+           family={Eberhart},
+           familyi={E\bibinitperiod},
+           given={Russell\bibnamedelima C},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=12d92c08cbd739cb423645113fab45fd}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Yuhui},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{6b25530f1f264c39b1baf2cbcaac1eef}
+      \strng{fullhash}{39c092a09ccd52b5f4b72b874df7b828}
+      \strng{authornamehash}{6b25530f1f264c39b1baf2cbcaac1eef}
+      \strng{authorfullhash}{39c092a09ccd52b5f4b72b874df7b828}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Swarm intelligence symposium, 2003. SIS'03. Proceedings of the 2003 IEEE}
+      \field{title}{Swarm intelligence for permutation optimization: a case study of n-queens problem}
+      \field{year}{2003}
+      \field{pages}{243\bibrangedash 246}
+      \range{pages}{4}
+    \endentry
+    \entry{aima}{book}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=9ce1e6cbe6dc79fd521d7b8ba8e8c568}{%
+           family={Russell},
+           familyi={R\bibinitperiod},
+           given={Stuart\bibnamedelima J},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=5de798d5fa3c0236c0478134cd23f52a}{%
+           family={Norvig},
+           familyi={N\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall/Pearson Education,}%
+      }
+      \strng{namehash}{6a97eb7a76be2cb960aa064b3a7b54ee}
+      \strng{fullhash}{ad615d7674605b488c9a1fe23ffd0126}
+      \strng{authornamehash}{6a97eb7a76be2cb960aa064b3a7b54ee}
+      \strng{authorfullhash}{ad615d7674605b488c9a1fe23ffd0126}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Artificial intelligence}
+      \field{year}{2003}
+    \endentry
+    \entry{engel07}{article}{}
+      \name{author}{1}{}{%
+        {{hash=489ded0c4a2edadb8bd90da0b67c4f83}{%
+           family={Engelhardt},
+           familyi={E\bibinitperiod},
+           given={Matthias\bibnamedelima R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{489ded0c4a2edadb8bd90da0b67c4f83}
+      \strng{fullhash}{489ded0c4a2edadb8bd90da0b67c4f83}
+      \strng{authornamehash}{489ded0c4a2edadb8bd90da0b67c4f83}
+      \strng{authorfullhash}{489ded0c4a2edadb8bd90da0b67c4f83}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0012-365X}
+      \field{journaltitle}{Discrete Mathematics}
+      \field{number}{21}
+      \field{title}{A group-based search for solutions of the n-queens problem}
+      \field{volume}{307}
+      \field{year}{2007}
+      \field{pages}{2535\bibrangedash 2551}
+      \range{pages}{17}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.disc.2007.01.007
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0012365X07000386
+      \endverb
+      \keyw{-Queens problem,Finite group action,Complete enumeration,Backtracking algorithm}
+    \endentry
+    \entry{agarwal12}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=55f2bc609389317dbdff1ccec8404752}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={Kavishi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=1b26e149cddb45d873a875ca9f156c0b}{%
+           family={Sinha},
+           familyi={S\bibinitperiod},
+           given={Akshita},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7cd786f4e0b4422494cfde346d776f2a}{%
+           family={Bindu},
+           familyi={B\bibinitperiod},
+           given={M\bibnamedelima Hima},
+           giveni={M\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{2d0cdd7a24b8bd4a817d4ab24a566b0e}
+      \strng{fullhash}{24f0054d2bd6699a4526fe95e8aa5be8}
+      \strng{authornamehash}{2d0cdd7a24b8bd4a817d4ab24a566b0e}
+      \strng{authorfullhash}{24f0054d2bd6699a4526fe95e8aa5be8}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Computer Science, Engineering \& Applications}
+      \field{title}{A novel hybrid approach to N-queen problem}
+      \field{year}{2012}
+      \field{pages}{519\bibrangedash 527}
+      \range{pages}{9}
+    \endentry
+    \entry{trivial}{article}{}
+      \name{author}{1}{}{%
+        {{hash=021ca29f9c270b2f55085bd2a7c00450}{%
+           family={Bernhardsson},
+           familyi={B\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{021ca29f9c270b2f55085bd2a7c00450}
+      \strng{fullhash}{021ca29f9c270b2f55085bd2a7c00450}
+      \strng{authornamehash}{021ca29f9c270b2f55085bd2a7c00450}
+      \strng{authorfullhash}{021ca29f9c270b2f55085bd2a7c00450}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM SIGART Bulletin}
+      \field{number}{2}
+      \field{title}{Explicit solutions to the N-queens problem for all N}
+      \field{volume}{2}
+      \field{year}{1991}
+      \field{pages}{7}
+      \range{pages}{1}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
