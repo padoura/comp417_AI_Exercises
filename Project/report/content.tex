@@ -35,6 +35,8 @@ We selected two algorithms to implement in MATLAB: 1) the min-conflict algorithm
 
 \subsection{Min-Conflicts Algorithm}
 
+Algorithm \ref{alg:min-conflicts} contains the pseudo-code of our min-conflicts implementation in MATLAB. The successor function of this method are lines 4-9, where local changes upon the current state happen by randomly choosing a queen and moving her to the row with the lowest number of conflicts (if it is not already zero).
+
 \begin{algorithm}
 \caption{MIN-CONFLICTS(n, maxSteps)}\label{alg:min-conflicts}
 \begin{algorithmic}[1]
@@ -55,21 +57,7 @@ We selected two algorithms to implement in MATLAB: 1) the min-conflict algorithm
 
 \subsection{FC-MRV Algorithm}
 
-\begin{algorithm}
-\caption{FC-MRV-MAIN(n)}\label{alg:fc-mrv-main}
-\begin{algorithmic}[1]
-\State Initialize empty solution
-\State Initialize currDomain $ = \boldsymbol{1}^{n\times n}$
-\ForAll{i : rows}
-\State solution[1] = i
-\State newSolution = FC-MRV(currDomain, solution, i, 1) 
-\If{newSolution not empty}
-return newSolution
-\EndIf
-\EndFor
-\State return empty solution
-\end{algorithmic}
-\end{algorithm}
+Algorithm \ref{alg:fc-mrv} contains the pseudo-code of our FC-MRV recursive implementation in MATLAB. The initial call is performed by Algorithm\ref{alg:fc-mrv-main}. The successor state is determined by the recursive calls of FC-MRV. More specifically, the MRV method (line 8) chooses the unassigned column with the minimum number of remaining valid rows. All valid rows are then checked one-by-one in lines 9-14. For each row, a new recursive call updates the current domain of the remaining unassigned columns (lines 1-5). This cycle of recursions continues until either a complete solution is found, or until a column does not have any remaining valid positions left (which means that the previously selected row is not part of a valid configuration).
 
 \begin{algorithm}
 \caption{FC-MRV(currDomain, solution, row, column)}\label{alg:fc-mrv}
@@ -92,6 +80,21 @@ return newSolution
 \EndIf
 \EndFor
 \State return empty solution
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{FC-MRV-MAIN(n)}\label{alg:fc-mrv-main}
+\begin{algorithmic}[1]
+\State Initialize empty solution
+\State Initialize currDomain $ = \boldsymbol{1}^{n\times n}$
+\ForAll{i : rows}
+\State solution[1] = i
+\State newSolution = FC-MRV(currDomain, solution, i, 1) 
+\If{newSolution not empty}
+return newSolution
+\EndIf
+\EndFor
 \end{algorithmic}
 \end{algorithm}
 
