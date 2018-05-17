@@ -1,6 +1,6 @@
 \section{Introduction}
 
-The $n$-queens problem, a combinatorial search problem, concerns the non-attacking (horizontally, vertically, and diagonally) placement of $n$ queens on a $n\times n$ chessboard. The $n$-queens and similar Constraint Satisfaction Problems (CSPs) are classical examples of the limitations of simple backtracking search, with an exponential worst case performance that renders solving for large $n$ impractical \citep{sosic90, backtracking}. Although many efficient heuristics have already been proposed for this problem \citep{sosic91, hu03, aima, engel07, agarwal12}, it still is a popular test bed for new Artificial Intelligence (AI) search problem methods. Whilst a toy problem per se, it has found some practical applications such as VLSI routing and testing, data compression, maximum full range communication and parallel optical computing \citep{sosic91, hu03}.
+The $n$-queens problem, a combinatorial search problem, concerns the non-attacking (horizontally, vertically, and diagonally) placement of $n$ queens on a $n\times n$ chessboard. The $n$-queens and similar Constraint Satisfaction Problems (CSPs) are classical examples of the limitations of simple backtracking search, with an exponential worst case time complexity that renders solving for large $n$ impractical \citep{sosic90, backtracking}. Although many efficient heuristics have already been proposed for this problem \citep{sosic91, hu03, aima, engel07, agarwal12}, it still is a popular test bed for new Artificial Intelligence (AI) search problem methods. Whilst a toy problem per se, it has found some practical applications such as VLSI routing and testing, data compression, maximum full range communication and parallel optical computing \citep{sosic91, hu03}.
 
 This problem has (at least) two variants depending on the desired number of solutions. A single solution can actually be found trivially without search, since explicit solutions exist $\forall \ n \ge 4$ \citep{trivial}. On the other hand, finding all possible solutions is non-trivial. In this project we will focus on the former variant, implementing and comparing the performance of two different search algorithms: a local search algorithm, and a constraint satisfaction method. We will first describe the problem mathematically and define the performance indicators for our comparison. In Section \ref{sec:methods} we will describe the implemented algorithms, and we will subsequently illustrate and discuss their performance.
 
@@ -8,21 +8,107 @@ This problem has (at least) two variants depending on the desired number of solu
 
 \subsection{Mathematical Model}
 
+A naive formulation would allow any arrangement on the chessboard, resulting in a huge number of combinations (e.g. 3 $\times 10^{14}$ for $n=8$). To reduce the state space, we distribute them so that each column contains only one queen. This restriction ensures that there will be no vertical conflicts, resulting in just 2057 candidate solutions \citep{aima}. 
 
+Therefore, let array $Q=(q_1,...,q_n : q_i \in \{1,...,n\} \ \forall i \in \{1,...,n\})$ be an $n$-queens placement, where $i$ is the column number, and $q_i$ is the row number of the $i$-th queen. To ensure that we have no horizontal or diagonal collisions, we need two more constraint equations. The first constraint is expressed as $q_i\ne q_j, \ \forall i \ne j$, namely no pairs of columns should be in the same row. The second constraint can be expressed as $|i-j| \ne |q_i - q_j|, \ \forall i \ne j$, namely no pair can be in the same diagonal.
+
+Having defined the constraint and state representation formulas, the objective function that returns the total amount of direct and indirect collisions of $Q$ is given by:
+\smallskip
+\begin{align}
+n_c(Q) &= \sum_{i=1}^{n-1} \sum_{j=i+1}^n c(q_i,q_j) \\ 
+c(q_i, q_j) &=  
+\begin{cases}
+   1, & q_i = q_j \\
+   1, & |i-j| = |q_i - q_j| \\
+    0,              & \text{otherwise}
+\end{cases}
+\end{align}
 
 \subsection{Performance Indicators}
 
+In order to assess the quality of our methods, we will employ up to five (exact number pending) different performance indicators: 1) average time duration, 2) average memory used, 3) average number of $n_c(Q)$ evaluations, 4) average number of $c(q_i,q_j)$ evaluations, and 5) average $n_c$ (if sub-optimal solutions are allowed, otherwise this metric will always equal zero). Time and memory measurements will give an estimate of the time and space complexity of each method respectively. However, absolute time is hardware-dependent, and may even vary in the same machine due to other operating system processes. Hence, the average number of $c(q_i, q_j)$ calls shall offer a hardware and software-independent time metric, where we could assume that each call costs $O(1)$ time, whereas the average number of $n_c(Q)$ shall provide a counting-independent time complexity indicator.
 
 \section{Methods}
 \label{sec:methods}
 
+We selected two algorithms to implement in MATLAB: 1) the min-conflict algorithm as a representative local search method, and 2) forward checking with minimum remaining values (FC-MRV) algorithm as a CSP solver \citep{aima}. We chose these two algorithms since previous results have illustrated their good performance, especially in comparison to simpler backtracking-based methods \citep{aima}.
+
 \subsection{Min-Conflicts Algorithm}
 
-\subsection{Forward Checking with Most Restricted Value Algorithm}
+\begin{algorithm}
+\caption{MIN-CONFLICTS(n, maxSteps)}\label{alg:min-conflicts}
+\begin{algorithmic}[1]
+\State randomize an initial solution
+\State steps = 0
+\While{$n_c \ge 1$ AND steps $<$ maxSteps}
+\State choose a random column i
+\If{current row at column i has conflicts}
+\State{Calculate number of conflicts for each row}
+\State{Choose newRow with lowest number of conflicts}
+\State solution[i] = newRow
+\EndIf
+\State steps++
+\EndWhile
+\State return solution
+\end{algorithmic}
+\end{algorithm}
 
-\section{Results}
+\subsection{FC-MRV Algorithm}
 
-\section{Conclusions}
+\begin{algorithm}
+\caption{FC-MRV-MAIN(n)}\label{alg:fc-mrv-main}
+\begin{algorithmic}[1]
+\State Initialize empty solution
+\State Initialize currDomain $ = \boldsymbol{1}^{n\times n}$
+\ForAll{i : rows}
+\State solution[1] = i
+\State newSolution = FC-MRV(currDomain, solution, i, 1) 
+\If{newSolution not empty}
+return newSolution
+\EndIf
+\EndFor
+\State return empty solution
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{FC-MRV(currDomain, solution, row, column)}\label{alg:fc-mrv}
+\begin{algorithmic}[1]
+\ForAll{i : unassigned columns}
+\State UpdateDomain(currDomain, row, column, i)
+\If{no available rows left for column i}
+return empty solution
+\EndIf
+\EndFor
+\If{all columns have been assigned with a row}
+return solution
+\EndIf
+\State newColumn = MRV(currDomain, solution)
+\ForAll{newRow : available rows for newColumn}
+\State solution[newColumn] = newRow
+\State newSolution = FC-MRV(currDomain, solution, newRow, newColumn) 
+\If{newSolution not empty}
+return newSolution
+\EndIf
+\EndFor
+\State return empty solution
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{UpdateDomain(currDomain, $q_i$, $i$, $j$)}\label{alg:UpdateDomain}
+\begin{algorithmic}[1]
+\ForAll{$q_j$ : rows}
+\If{$c(q_i, q_j)==1$}
+currDomain[$i$,$j$] = 0
+\EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+%\section{Results}
+
+%\section{Conclusions}
 
 
 

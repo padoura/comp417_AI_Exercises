@@ -55,12 +55,6 @@
       \field{year}{1990}
       \field{pages}{7\bibrangedash 11}
       \range{pages}{5}
-      \verb{doi}
-      \verb 10.1145/101340.101343
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/101340.101343
-      \endverb
     \endentry
     \entry{backtracking}{article}{}
       \name{author}{2}{}{%
@@ -214,12 +208,6 @@
       \field{year}{2007}
       \field{pages}{2535\bibrangedash 2551}
       \range{pages}{17}
-      \verb{doi}
-      \verb https://doi.org/10.1016/j.disc.2007.01.007
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/S0012365X07000386
-      \endverb
       \keyw{-Queens problem,Finite group action,Complete enumeration,Backtracking algorithm}
     \endentry
     \entry{agarwal12}{incollection}{}
