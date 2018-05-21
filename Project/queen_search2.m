@@ -1,4 +1,4 @@
-function solution = queen_search3(n)
+function solution = queen_search2(n)
     C1 = 0.45;
     max_steps = 32*n;
     
