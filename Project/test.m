@@ -31,8 +31,8 @@ clc
 %               maximum memory used by the respective algorithms per
 %               problem size
 
-rng(15,'twister')
-N = 10:5:100;
+rng(87,'twister')
+N = 10;
 max_steps = 10000;
 num_trials = 10;
 
@@ -48,12 +48,14 @@ for i = 1:length(N)
         fc_mrv_t_end = cputime;
 
         min_conflict_t_start = cputime;
-%         min_conflict_solution = min_conflict(N(i), max_steps(1));
+        min_conflict_solution = min_conflict(N(i), max_steps(1));
         min_conflict_t_end = cputime;
         
+        cd swap
         swap_t_start = cputime;
-        swap_solution = queen_search3(N(i));
+        swap_solution = queen_search2(N(i));
         swap_t_end = cputime;
+        cd ..
 
         min_conflict_time(i,j) = min_conflict_t_end - min_conflict_t_start;
         fc_mrv_time(i,j) = fc_mrv_t_end - fc_mrv_t_start;
