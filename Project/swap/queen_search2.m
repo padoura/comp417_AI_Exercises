@@ -5,7 +5,7 @@ function solution = queen_search2(n)
     % Initialize while loop
     solution = randperm(n);
     [negDiagQueens, posDiagQueens] = checkDiagonals(solution);
-    conflicts = countConflicts(negDiagQueens, posDiagQueens);
+    conflicts = countDiagConflicts(negDiagQueens, posDiagQueens);
     limit = C1 * conflicts;
     attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQueens);
     steps = 0;
@@ -35,7 +35,7 @@ function solution = queen_search2(n)
         % Reinitialize while loop
         solution = randperm(n);
         [negDiagQueens, posDiagQueens] = checkDiagonals(solution);
-        conflicts = countConflicts(negDiagQueens, posDiagQueens);
+        conflicts = countDiagConflicts(negDiagQueens, posDiagQueens);
         limit = C1 * conflicts;
         attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQueens);
         steps = 0;
