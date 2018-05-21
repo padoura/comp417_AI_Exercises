@@ -11,7 +11,6 @@ function newSolution = fc_mrv(currDomain, solution, row, column)
         return
     end
     newColumn = mrv(currDomain, solution);
-%     find(currDomain(:,newColumn) == 1)'
     for newRow = find(currDomain(:,newColumn) == 1)'
         solution(newColumn) = newRow;
         newSolution = fc_mrv(currDomain, solution, newRow, newColumn);
