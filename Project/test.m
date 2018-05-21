@@ -32,8 +32,7 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = 10;
-max_steps = 10000;
+N = 1000;
 num_trials = 10;
 
 min_conflict_time = zeros(length(N),num_trials);
@@ -44,16 +43,18 @@ for i = 1:length(N)
     for j = 1:num_trials
         fprintf('Problem size: %i\t Trial: %i\n', N(i), j)
         fc_mrv_t_start = cputime;
-        fc_mrv_solution = fc_mrv_main(N(i));
+%         fc_mrv_solution = fc_mrv_main(N(i));
         fc_mrv_t_end = cputime;
 
+        cd min_conflicts
         min_conflict_t_start = cputime;
-        min_conflict_solution = min_conflict(N(i), max_steps(1));
+        min_conflict_solution = min_conflict(N(i));
         min_conflict_t_end = cputime;
+        cd ..
         
         cd swap
         swap_t_start = cputime;
-        swap_solution = queen_search2(N(i));
+%         swap_solution = queen_search2(N(i));
         swap_t_end = cputime;
         cd ..
 
