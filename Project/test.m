@@ -32,13 +32,17 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = [10:3:40 50:10:100 200:100:1000 2000:1000:10000];
+N = 100:100:500%[10:3:40 50:10:100 200:100:1000 2000:1000:10000];
 num_trials = 20;
 upper_limit_fc_mrv = 50;
 
 min_conflict_time = zeros(length(N),num_trials);
+min_conflict_calls = zeros(length(N),num_trials);
+
 fc_mrv_time = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
+
 swap_time = zeros(length(N),num_trials);
+swap_calls = zeros(length(N),num_trials);
 
 for i = 1:length(N)
     for j = 1:num_trials
@@ -50,6 +54,8 @@ for i = 1:length(N)
             fc_mrv_solution = fc_mrv_main(N(i));
             fc_mrv_t_end = cputime;
             cd ..
+            
+            fc_mrv_time(i,j) = fc_mrv_t_end - fc_mrv_t_start;
         end
 
         cd min_conflicts
@@ -60,18 +66,23 @@ for i = 1:length(N)
         
         cd swap
         swap_t_start = cputime;
-        swap_solution = queen_search2(N(i));
+        [swap_solution swap_calls(i,j)] = queen_search2(N(i));
         swap_t_end = cputime;
         cd ..
 
         min_conflict_time(i,j) = min_conflict_t_end - min_conflict_t_start;
-        fc_mrv_time(i,j) = fc_mrv_t_end - fc_mrv_t_start;
         swap_time(i,j) = swap_t_end - swap_t_start;
     end
 end
 
 min_conflict_time_avg = mean(min_conflict_time, 2);
 fc_mrv_time_avg = mean(fc_mrv_time, 2);
-swap_time_avg = mean(swap_time, 2);
 
+swap_time_avg = mean(swap_time, 2);
+swap_calls_avg = mean(swap_calls, 2);
+
+figure(1)
 plot(N, min_conflict_time_avg, '-k', N(N<upper_limit_fc_mrv), fc_mrv_time_avg, '-r', N, swap_time_avg, '-b')
+
+figure(2)
+plot(N, swap_calls_avg, '-b')

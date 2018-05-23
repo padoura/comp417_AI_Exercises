@@ -1,4 +1,9 @@
-function solution = queen_search2(n)
+function [solution, numCalls]  = queen_search2(n)
+
+    %For time cost measurement we assume that each call of checkDiagonals,
+    %countDiagConflicts, findAttackedQueens cost n units
+
+    
     C1 = 0.45;
     max_steps = 32*n;
     
@@ -9,6 +14,8 @@ function solution = queen_search2(n)
     limit = C1 * conflicts;
     attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQueens);
     steps = 0;
+    
+    numCalls = 3*n; % keeps the time cost
     
     while (conflicts > 0)
         while (steps < max_steps)
@@ -21,11 +28,13 @@ function solution = queen_search2(n)
                 if swapIsBetter(i, j, negDiagQueens, posDiagQueens, solution)
                     [solution, negDiagQueens, posDiagQueens, conflicts] =...
                         performSwap(solution, i, j, negDiagQueens, posDiagQueens, conflicts);
+                    
                     if (conflicts == 0)
                         return
                     elseif (conflicts < limit)
                         limit = C1 * conflicts;
                         attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQueens);
+                        numCalls = numCalls + n;
                         break
                     end
                 end
@@ -39,6 +48,8 @@ function solution = queen_search2(n)
         limit = C1 * conflicts;
         attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQueens);
         steps = 0;
+        
+        numCalls = numCalls + 3*n;
     end
 
 end
