@@ -1,7 +1,8 @@
 function [solution, numCalls]  = queen_search2(n)
 
     %For time cost measurement we assume that each call of checkDiagonals,
-    %countDiagConflicts, findAttackedQueens cost n units
+    %countDiagConflicts, findAttackedQueens cost n units. +1 for every for
+    %loop iteration
 
     
     C1 = 0.45;
@@ -38,6 +39,7 @@ function [solution, numCalls]  = queen_search2(n)
                         break
                     end
                 end
+                numCalls = numCalls + 1;
             end
         end
         

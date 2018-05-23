@@ -40,6 +40,7 @@ min_conflict_time = zeros(length(N),num_trials);
 min_conflict_calls = zeros(length(N),num_trials);
 
 fc_mrv_time = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
+fc_mrv_calls = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
 
 swap_time = zeros(length(N),num_trials);
 swap_calls = zeros(length(N),num_trials);
@@ -60,13 +61,13 @@ for i = 1:length(N)
 
         cd min_conflicts
         min_conflict_t_start = cputime;
-        min_conflict_solution = min_conflict(N(i));
+        [min_conflict_solution, min_conflict_calls(i,j)] = min_conflict(N(i));
         min_conflict_t_end = cputime;
         cd ..
         
         cd swap
         swap_t_start = cputime;
-        [swap_solution swap_calls(i,j)] = queen_search2(N(i));
+        [swap_solution, swap_calls(i,j)] = queen_search2(N(i));
         swap_t_end = cputime;
         cd ..
 
@@ -76,7 +77,10 @@ for i = 1:length(N)
 end
 
 min_conflict_time_avg = mean(min_conflict_time, 2);
+min_conflict_calls_avg = mean(min_conflict_calls, 2);
+
 fc_mrv_time_avg = mean(fc_mrv_time, 2);
+fc_mrv_calls_avg = mean(fc_mrv_calls, 2);
 
 swap_time_avg = mean(swap_time, 2);
 swap_calls_avg = mean(swap_calls, 2);
@@ -85,4 +89,4 @@ figure(1)
 plot(N, min_conflict_time_avg, '-k', N(N<upper_limit_fc_mrv), fc_mrv_time_avg, '-r', N, swap_time_avg, '-b')
 
 figure(2)
-plot(N, swap_calls_avg, '-b')
+plot(N, swap_calls_avg, '-b', N, min_conflict_calls_avg, '-k')
