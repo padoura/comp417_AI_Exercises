@@ -32,19 +32,24 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = 1000;
-num_trials = 10;
+N = [20:10:100 200:100:1000 2000:1000:10000];
+num_trials = 20;
 
 min_conflict_time = zeros(length(N),num_trials);
-fc_mrv_time = zeros(length(N),num_trials);
+fc_mrv_time = zeros(length(N/3),num_trials);
 swap_time = zeros(length(N),num_trials);
 
 for i = 1:length(N)
     for j = 1:num_trials
         fprintf('Problem size: %i\t Trial: %i\n', N(i), j)
-        fc_mrv_t_start = cputime;
-%         fc_mrv_solution = fc_mrv_main(N(i));
-        fc_mrv_t_end = cputime;
+        
+        if (N(i) < 200)
+            cd fc_mrv
+            fc_mrv_t_start = cputime;
+            fc_mrv_solution = fc_mrv_main(N(i));
+            fc_mrv_t_end = cputime;
+            cd ..
+        end
 
         cd min_conflicts
         min_conflict_t_start = cputime;
@@ -54,7 +59,7 @@ for i = 1:length(N)
         
         cd swap
         swap_t_start = cputime;
-%         swap_solution = queen_search2(N(i));
+        swap_solution = queen_search2(N(i));
         swap_t_end = cputime;
         cd ..
 
@@ -68,4 +73,4 @@ min_conflict_time_avg = mean(min_conflict_time, 2);
 fc_mrv_time_avg = mean(fc_mrv_time, 2);
 swap_time_avg = mean(swap_time, 2);
 
-plot(N, min_conflict_time_avg, '-k', N, fc_mrv_time_avg, '-r', N, swap_time_avg, '-b')
+plot(N, min_conflict_time_avg, '-k', N/3, fc_mrv_time_avg, '-r', N, swap_time_avg, '-b')
