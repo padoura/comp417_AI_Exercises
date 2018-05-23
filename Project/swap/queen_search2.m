@@ -8,6 +8,7 @@ function [solution, numCalls]  = queen_search2(n)
     %n.
 
     
+    %Constants from Sosic and Gu (1991).
     C1 = 0.45;
     max_steps = 32*n;
     

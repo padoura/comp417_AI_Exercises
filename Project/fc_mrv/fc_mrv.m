@@ -1,8 +1,10 @@
-function [newSolution, numCalls] = fc_mrv(currDomain, solution, row, column)
+function [newSolution, numCalls, space] = fc_mrv(currDomain, solution, row, column)
 
     n = length(solution);
     unassigned = find(solution==0);
     numCalls = n;
+    
+    space = n^2 + 3*n;
 
     for i_unassigned = unassigned
         currDomain = updateDomain(currDomain, row, column, i_unassigned);
@@ -26,7 +28,8 @@ function [newSolution, numCalls] = fc_mrv(currDomain, solution, row, column)
     
     for newRow = availableRows
         solution(newColumn) = newRow;
-        [newSolution, newCalls] = fc_mrv(currDomain, solution, newRow, newColumn);
+        [newSolution, newCalls, newSpace] = fc_mrv(currDomain, solution, newRow, newColumn);
+        space = space + newSpace;
         numCalls = numCalls + newCalls;
         if newSolution
             return

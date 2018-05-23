@@ -1,9 +1,16 @@
 function [solution, numCalls] = min_conflict(n)
-    max_steps = 32*n;
+    
+    %Constant for max steps from Sosic and Gu (1991), although it is rarely
+    %(if ever) reached with this algorithm.
+    max_steps = 32*n; 
+    
     
     %For time cost measurement we assume that each call of checkDiagonals(),
     %countDiagConflicts(), findAttackedQueens(), find(), min(), zeros(),
     %ones(), randperm() cost n units.
+    
+    %For space cost estimation we count each vector which size depends on
+    %n.
 
     % Initialize while loop
     solution = randperm(n);
@@ -14,6 +21,10 @@ function [solution, numCalls] = min_conflict(n)
     steps = 0;
     
     numCalls = 5*n; % keeps the time cost
+    
+    % keeps the space cost of each array; since it's fixed this line is
+    % commented out.
+%     space = 10*n - 2;
 
     while(conflicts > 0)
         while (steps < max_steps)
