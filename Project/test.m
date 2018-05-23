@@ -34,7 +34,7 @@ clc
 rng(87,'twister')
 N = [10:3:40 50:10:100 200:100:1000 2000:1000:10000];
 num_trials = 20;
-upper_limit_fc_mrv = 200;
+upper_limit_fc_mrv = 50;
 
 min_conflict_time = zeros(length(N),num_trials);
 fc_mrv_time = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
@@ -44,7 +44,7 @@ for i = 1:length(N)
     for j = 1:num_trials
         fprintf('Problem size: %i\t Trial: %i\n', N(i), j)
         
-        if (N(i) < 50)
+        if (N(i) < upper_limit_fc_mrv)
             cd fc_mrv
             fc_mrv_t_start = cputime;
             fc_mrv_solution = fc_mrv_main(N(i));
