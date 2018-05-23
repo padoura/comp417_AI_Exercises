@@ -20,10 +20,9 @@ function [solution, numCalls]  = queen_search2(n)
     steps = 0;
     
     numCalls = 4*n; % keeps the time cost
-    
-    % keeps the space cost of each array; since it's fixed this line is
-    % commented out.
-%     space = 7*n - 2;
+% keeps the space cost of each array; since it's
+%     fixed this line is commented out.
+%     space = 7*n - 2; 
 
     
     while (conflicts > 0)

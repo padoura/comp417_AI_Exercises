@@ -5,5 +5,4 @@ function newColumn = mrv(currDomain, solution)
     tempColumns = find(unassigned == 1, argmin);
     pos = randi(length(tempColumns));
     newColumn = tempColumns(pos);
-%     newColumn = tempColumns(end);
 end

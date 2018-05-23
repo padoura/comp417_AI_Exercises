@@ -32,8 +32,8 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = [4:1:20 30:10:100 200:100:1000 2000:1000:10000];
-num_trials = 100;
+N = [3:1:20 30:10:100 200:100:1000 2000:1000:10000];
+num_trials = 30;
 upper_limit_fc_mrv = 21;
 
 min_conflict_time = zeros(length(N),num_trials);
@@ -46,7 +46,7 @@ swap_time = zeros(length(N),num_trials);
 swap_calls = zeros(length(N),num_trials);
 
 if any(N < 4)
-    fprintf('N-Queens problem cannot be solved for N < 4.\nPlease change value of N. \n')
+    fprintf('Please execute  N>3\n')
     return
 end
 
@@ -95,8 +95,6 @@ swap_calls_avg = mean(swap_calls, 2);
 %%
 figure(1)
 plot(N, min_conflict_time_avg, '-k', N(N<upper_limit_fc_mrv), fc_mrv_time_avg, '-r', N, swap_time_avg, '-b')
-set(gca, 'YScale', 'log')
 
 figure(2)
 plot(N, min_conflict_calls_avg, '-k', N(N<upper_limit_fc_mrv), fc_mrv_calls_avg, '-r', N, swap_calls_avg, '-b')
-set(gca, 'YScale', 'log')
