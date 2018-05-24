@@ -32,9 +32,10 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = [4:1:20 30:10:100 200:100:1000 2000:1000:10000];
+N = [4:1:20 22:2:30 35:5:50 60:10:100 200:100:1000 2000:1000:10000 20000:10000:100000];
 num_trials = 100;
-upper_limit_fc_mrv = 21;
+upper_limit_fc_mrv = 29;
+upper_limit_min_conflicts = 10001;
 
 min_conflict_time = zeros(length(N),num_trials);
 min_conflict_calls = zeros(length(N),num_trials);
@@ -69,15 +70,17 @@ for i = 1:length(N)
             fc_mrv_time(i,j) = fc_mrv_t_end - fc_mrv_t_start;
         end
 
-        cd min_conflicts
-        min_conflict_t_start = cputime;
-        [min_conflict_solution, min_conflict_calls(i,j)] = min_conflict(N(i));
-        min_conflict_t_end = cputime;
-        
-        min_conflict_time(i,j) = min_conflict_t_end - min_conflict_t_start;
-        min_conflict_space(i,j) = 10*N(i) - 2;
-        
-        cd ..
+        if (N(i) < upper_limit_min_conflicts)
+            cd min_conflicts
+            min_conflict_t_start = cputime;
+            [min_conflict_solution, min_conflict_calls(i,j)] = min_conflict(N(i));
+            min_conflict_t_end = cputime;
+
+            min_conflict_time(i,j) = min_conflict_t_end - min_conflict_t_start;
+            min_conflict_space(i,j) = 10*N(i) - 2;
+
+            cd ..
+        end
         
         cd swap
         swap_t_start = cputime;
@@ -104,18 +107,5 @@ results.swap_calls_avg = mean(swap_calls, 2);
 results.swap_space_avg = mean(swap_space, 2);
 
 cd results
-save('results.mat','results')
+save('results.mat','results','N','num_trials','upper_limit_fc_mrv')
 cd ..
-
-%%
-figure(1)
-plot(N, results.min_conflict_time_avg, '-k', N(N<upper_limit_fc_mrv), results.fc_mrv_time_avg, '-r', N, results.swap_time_avg, '-b')
-set(gca, 'YScale', 'log')
-
-figure(2)
-plot(N, results.min_conflict_calls_avg, '-k', N(N<upper_limit_fc_mrv), results.fc_mrv_calls_avg, '-r', N, results.swap_calls_avg, '-b')
-set(gca, 'YScale', 'log')
-
-figure(3)
-plot(N, results.min_conflict_space_avg, '-k', N(N<upper_limit_fc_mrv), results.fc_mrv_space_avg, '-r', N, results.swap_space_avg, '-b')
-set(gca, 'YScale', 'log')
