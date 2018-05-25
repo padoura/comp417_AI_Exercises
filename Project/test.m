@@ -32,9 +32,9 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = [4:1:20 22:2:30 35:5:50 60:10:100 200:100:1000 2000:1000:10000 20000:10000:100000];
+N = [4:2:30 40:10:100 200:100:1000 2000:1000:10000 20000:10000:40000];
 num_trials = 100;
-upper_limit_fc_mrv = 29;
+upper_limit_fc_mrv = 71;
 upper_limit_min_conflicts = 10001;
 
 min_conflict_time = zeros(length(N),num_trials);
