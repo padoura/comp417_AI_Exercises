@@ -32,18 +32,18 @@ clc
 %               problem size
 
 rng(87,'twister')
-N = [4:2:30 40:10:100 200:100:1000 2000:1000:10000 20000:10000:40000];
+N = [10:10:100 200:100:1000 2000:1000:10000 20000:10000:60000];
 num_trials = 100;
-upper_limit_fc_mrv = 71;
+upper_limit_fc_mrv = 91;
 upper_limit_min_conflicts = 10001;
 
 min_conflict_time = zeros(length(N),num_trials);
 min_conflict_calls = zeros(length(N),num_trials);
 min_conflict_space = zeros(length(N),num_trials);
 
-fc_mrv_time = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
-fc_mrv_calls = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
-fc_mrv_space = zeros(length(N(N<upper_limit_fc_mrv)),num_trials);
+fc_mrv_time = zeros(length(N),num_trials);
+fc_mrv_calls = zeros(length(N),num_trials);
+fc_mrv_space = zeros(length(N),num_trials);
 
 swap_time = zeros(length(N),num_trials);
 swap_calls = zeros(length(N),num_trials);
@@ -107,5 +107,5 @@ results.swap_calls_avg = mean(swap_calls, 2);
 results.swap_space_avg = mean(swap_space, 2);
 
 cd results
-save('results.mat','results','N','num_trials','upper_limit_fc_mrv')
+save('results.mat','results','N','num_trials','upper_limit_fc_mrv','upper_limit_min_conflicts')
 cd ..

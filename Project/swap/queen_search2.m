@@ -1,8 +1,7 @@
 function [solution, numCalls]  = queen_search2(n)
 
     %For time cost estimation we assume that each call of checkDiagonals(),
-    %countDiagConflicts(), findAttackedQueens(), find(), min(), zeros(),
-    %ones(), randperm() cost n units.
+    %countDiagConflicts(), findAttackedQueens(), find(), randperm() cost n units.
     
     %For space cost estimation we count each vector which size depends on
     %n.
@@ -24,7 +23,7 @@ function [solution, numCalls]  = queen_search2(n)
     
     % keeps the space cost of each array; since it's fixed this line is
     % commented out.
-%     space = 7*n - 2;
+%     space = 7*n;
 
     
     while (conflicts > 0)
@@ -39,6 +38,9 @@ function [solution, numCalls]  = queen_search2(n)
                 while (j==i)
                     j = randi(n);
                 end
+				
+				numCalls = numCalls + 1; %for each iteration below
+				
                 if swapIsBetter(i, j, negDiagQueens, posDiagQueens, solution)
                     [solution, negDiagQueens, posDiagQueens, conflicts] =...
                         performSwap(solution, i, j, negDiagQueens, posDiagQueens, conflicts);

@@ -24,7 +24,7 @@ function [solution, numCalls] = min_conflict(n)
     
     % keeps the space cost of each array; since it's fixed this line is
     % commented out.
-%     space = 10*n - 2;
+%     space = 9*n;
 
     while(conflicts > 0)
         while (steps < max_steps)
