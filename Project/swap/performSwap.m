@@ -1,6 +1,40 @@
 function [solution, negDiagQueens, posDiagQueens, conflicts] = ...
     performSwap(solution, i, j, negDiagQueens, posDiagQueens, conflicts)
     
+    %  File    :   run_n_queens
+    % 
+    %  Authors :   Pantourakis Michail, Proestakis Ioannis
+    %  Date    :   Spring 2018
+    % 
+    %  Course  :   Artificial Intelligence (COMP 417) - Technical University
+    %  of Crete
+    %   
+    % Description: Swaps positions between i and j queens. The negative and positive
+    %			   diagonals change, and the difference between the old and new
+	%    		   direct conflicts is calculated. Conflicts are also updated.
+    %        
+    % Parameters :
+    %              
+    %              solution is the vector that describes the current state
+    %
+    %              i is an attacked queen
+    %              
+    %              j is a random queen
+    %              
+    %              negDiagQueens is all the diagonals with opposite slope
+    %              than main diagonal
+    %
+    %              posDiagQueens is all the diagonals with the same slope
+    %              with the main diagonal
+    %              conflicts is the number of directs conflicts for current
+    %              state
+    %
+    %                          
+    %
+    % Return     : solution, diagonal arrays and conflicts
+
+
+
     n = length(solution);
     
     %Update two current negative diagonals if there are conflicts
