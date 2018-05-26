@@ -16,8 +16,9 @@ function [solution, numCalls] = min_conflict(n)
     % conflicts that we avoid and the conflicts that be create and with
     % this criteria(of gain) to choose random between the new candidate
     % positions which have the same good(all the best than all the rest) 
-    % reduces of conflicts than this state.We repeate the above process
-    % unit we haven't any conflict or exceeds the max_steps.
+    % reduces of conflicts than this state.We repeat the above process
+    % until we haven't any conflict or exceeds the max_steps and in that
+    % case we start again the search from different state.
     %
     %
     % Parameters :

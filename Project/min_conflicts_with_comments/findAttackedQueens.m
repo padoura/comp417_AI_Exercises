@@ -8,7 +8,7 @@ function attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQue
     %  of Crete
     %   
     % Description: if a queen is not alone in diagonal or in a row then is
-    %              be an attacked queen
+    %              been an attacked queen
     %
     % Parameters :
     %           
@@ -20,9 +20,9 @@ function attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQue
     %              posDiagQueens is all the diagonals with the same tendency
     %              with the main diagonal
     %
-    %              rowQueens is the vector that show the #of queens to each row               
+    %              rowQueens is the vector that shows the #of queens to each row               
     %
-    % Return     :return all the queens that be attacked
+    % Return     :return all the queens that are been attacked
                 
                  
     
@@ -30,7 +30,7 @@ function attackedQueens = findAttackedQueens(solution, negDiagQueens, posDiagQue
     
     n = length(solution);
     attackedQueens = zeros(1,n);
-    %Queen is attacked if her diagonals or row have more than 1 queen
+    %Queen is been attacked if her diagonals or row have more than 1 queens
     for i=1:n%i-th queen
         if (negDiagQueens(i-solution(i)+n) > 1) || (posDiagQueens(i+solution(i)-1) > 1) || (rowQueens(solution(i)) > 1)
             attackedQueens(i) = 1;
