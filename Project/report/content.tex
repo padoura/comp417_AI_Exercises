@@ -91,6 +91,7 @@ return newSolution
 \end{algorithmic}
 \end{algorithm}
 
+
 %\begin{algorithm}
 %\caption{UpdateDomain(currDomain, $q_i$, $i$, $j$)}\label{alg:UpdateDomain}
 %\begin{algorithmic}[1]
@@ -107,6 +108,14 @@ return newSolution
 Algorithm \ref{alg:min-conflicts} contains the pseudo-code of our min-conflicts implementation in MATLAB. The successor operations of this method are in lines 14-15, where local changes upon the current state happen by randomly choosing an attacked queen and moving her to the row with the lowest number of conflicts. The above procedure is repeated until a maximum number of steps is reached or a solution is found. The outer while loop guarantees completeness.
 
 \textbf{Performance Estimation:} In order to estimate the number of operations and the memory used we make the following assumptions: 1) Each call of checkDiagonals(), countDiagConflicts(), findAttackedQueens(), find(), min() and randperm() cost $n$ operations. 2) Initialization of $R$ and array that keeps conflicts per row (line 12) cost $n$ operations. 3) $D_{\text{pos}}$ and $D_{\text{neg}}$ cost $2n$ arbitrary memory units, whereas the rest of the arrays cost $n$ units. With these assumptions the space complexity is linear, estimated as $9n$.
+
+
+
+\subsection{QS2: Swapping Queens}
+
+Algorithm \ref{alg:swap} contains the pseudo-code of our min-conflicts implementation in MATLAB. The successor operations take place in lines 13-14. For each attacked queen, we randomly choose another queen and we check whether swapping their rows will decrease $n_c$. If it does, then the state is updated, performing the swap. The limit of line 18 is used as a way of preventing breaking the for loop prematurely and recalculating the attacked queens unnecessarily \citep{sosic91}. Again the outer while loop guarantees that an optimal solution will be returned.
+
+\textbf{Performance Estimation:} In order to estimate the number of operations and the memory used we make the following assumptions: 1) Each call of checkDiagonals(), countDiagConflicts(), findAttackedQueens(), find(), randperm() cost $n$ operations. 2) For each iteration of for loop in line 10, we add a single operation. 3) $D_{\text{pos}}$ and $D_{\text{neg}}$ cost $2n$ arbitrary memory units, whereas the rest of the arrays cost $n$ units. With these assumptions the space complexity is linear,  estimated as $7n$.
 
 \begin{algorithm}
 \caption{MIN-CONFLICTS(n)}\label{alg:min-conflicts}
@@ -140,13 +149,6 @@ Algorithm \ref{alg:min-conflicts} contains the pseudo-code of our min-conflicts 
 \EndWhile
 \end{algorithmic}
 \end{algorithm}
-
-\newpage
-\subsection{QS2: Swapping Queens}
-
-Algorithm \ref{alg:swap} contains the pseudo-code of our min-conflicts implementation in MATLAB. The successor operations take place in lines 13-14. For each attacked queen, we randomly choose another queen and we check whether swapping their rows will decrease $n_c$. If it does, then the state is updated, performing the swap. The limit of line 18 is used as a way of preventing breaking the for loop prematurely and recalculating the attacked queens unnecessarily \citep{sosic91}. Again the outer while loop guarantees that an optimal solution will be returned.
-
-\textbf{Performance Estimation:} In order to estimate the number of operations and the memory used we make the following assumptions: 1) Each call of checkDiagonals(), countDiagConflicts(), findAttackedQueens(), find(), randperm() cost $n$ operations. 2) For each iteration of for loop in line 10, we add a single operation. 3) $D_{\text{pos}}$ and $D_{\text{neg}}$ cost $2n$ arbitrary memory units, whereas the rest of the arrays cost $n$ units. With these assumptions the space complexity is linear,  estimated as $7n$.
 
 \begin{algorithm}
 \caption{QS2(n)}\label{alg:swap}

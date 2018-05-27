@@ -1,3 +1,11 @@
+%  Authors :   Pantourakis Michail, Proestakis Ioannis
+%  Date    :   Spring 2018
+% 
+%  Course  :   Artificial Intelligence (COMP 417) - Technical University
+%  of Crete
+%   
+%  Description: Run this file to generate figures.
+
 clear all
 close all
 clc

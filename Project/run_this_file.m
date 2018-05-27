@@ -2,34 +2,15 @@ clear all
 close all
 clc
 
-%  File    :   run_n_queens
-% 
 %  Authors :   Pantourakis Michail, Proestakis Ioannis
 %  Date    :   Spring 2018
 % 
 %  Course  :   Artificial Intelligence (COMP 417) - Technical University
 %  of Crete
 %   
-% Description: The running script for solving n-queens with Min-Conflicts
-% and FC-MRV (see AIMA textbook for more details), saving their
-% performance.
-% 
-% Parameters :
-%               N is the vector for problems of different size
-% 
-%               max_steps is the maximum number of steps Min-Conflicts is
-%               allowed to run
-% 
-%               num_trials is the number of times the problem is solved per
-%               method
-% 
-% Return     :
-%               [min_conflict_time_avg fc_mrv_time_avg] the average
-%               running times of the respective algorithms per problem size
-% 
-%               [min_conflict_memory_avg fc_mrv_memory_avg] the average
-%               maximum memory used by the respective algorithms per
-%               problem size
+% Description: The running script for solving n-queens with FC-MRV,
+% Min-Conflicts and QS2, saving their performance in folder results.
+% Run this file to generate all results.
 
 rng(87,'twister')
 N = [10:10:100 200:100:1000 2000:1000:10000 20000:10000:60000];
