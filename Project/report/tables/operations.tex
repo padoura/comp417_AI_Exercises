@@ -1,0 +1,84 @@
+\begin{table}[htpb]
+\centering
+\makebox{
+%\resizebox{!}{1cm}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+\multirow{2}{*}{Number of Queens $n$} & \multicolumn{3}{c|}{Number of Operations}\\
+\cline{2-4}
+& FC-MRV & Min-conflicts & QS2\\
+\hline
+10 & 2190 & 4062 & 4934\\
+\hline
+20 & 11260 & 8069 & 13632\\
+\hline
+30 & 32809 & 12452 & 23830\\
+\hline
+40 & 104653 &18076 & 32047\\
+\hline
+50 & 208325 & 23275 & 44853\\
+\hline
+60 & 3089588 & 32664 & 51337\\
+\hline
+70 & 2419038 & 38651 & 59200\\
+\hline
+80 & 92664845 & 50340 & 65395\\
+\hline
+90 & - &56345 & 58184\\
+\hline
+100 & - &71095 & 82639\\
+\hline
+200 & - &194120 & 113384\\
+\hline
+300 & - & 383505 & 130177\\
+\hline
+400 & - & 619140 & 174827\\
+\hline
+500 & - & 875625 & 263529\\
+\hline
+600 & - & 1250970 & 272058\\
+\hline
+700 & - & 1585535& 332380\\
+\hline
+800 & - &2013400 & 368229\\
+\hline
+900 & - &2485260 & 347673\\
+\hline
+1000 & - & 3004600 & 376858\\
+\hline
+2000 & - & 10733900 & 1215070\\ 
+\hline
+3000 & - & 22950600 & 1809304\\
+\hline
+4000 & - & 39726200 & 1814601\\
+\hline
+5000 & - & 60948250 & 2336182\\
+\hline
+6000 & - & 86990400 & 2883814\\
+\hline
+7000 & - & 117443900 & 3560520\\
+\hline
+8000 & - & 151767200 & 4162563\\
+\hline
+9000 & - & 191103300 & 4962452\\
+\hline
+10000 & - & 234658500 & 5496021\\
+\hline
+20000 & - & - & 11752792\\
+\hline
+30000 & - & - & 19648046\\ 
+\hline
+40000 & - & - & 27203392\\
+\hline
+50000 & - & - & 33736673\\
+\hline
+60000 & - & - & 40844200\\
+\hline
+\end{tabular}
+}%}
+\caption{Number of operations of all algorithms for $n$-queens problem. For each problem size $n = \{10, 20,..., 100, 200,..., 1000, 2000,..., 10000,..., 60000\}$ results are averaged over 100 tries. FC-MRV and min-conflicts ran for size of up to 80 and 10000 queens respectively, due to their large running times. See Section \ref{sec:methods} for how the number of operations is estimated in each method.}
+\label{table:operations}
+\end{table}
+
+
+

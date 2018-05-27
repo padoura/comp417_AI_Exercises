@@ -43,11 +43,11 @@ In order to assess the quality of our methods, we will employ three different pe
 \section{Methods}
 \label{sec:methods}
 
-We selected three algorithms to implement in MATLAB: 1) forward checking with minimum remaining values (FC-MRV) algorithm as a CSP solver \citep{aima}, 2) the min-conflict algorithm as a CSP/local search method  \citep{aima}, and 3) QS2, a swapping local search algorithm \citep{sosic91}. We chose these algorithms since previous results have illustrated their good performance, especially in comparison to simpler backtracking-based methods \citep{aima, sosic91}.
+We selected three algorithms to implement in MATLAB: 1) forward checking with minimum remaining values (FC-MRV) algorithm as a CSP solver \citep{aima}, 2) the min-conflict algorithm as a CSP/local search method  \citep{aima}, and 3) QS2, a swapping local search algorithm \citep{sosic91}. We chose these algorithms since previous results have illustrated their good performance, especially in comparison to simpler backtracking-based methods \citep{aima, sosic91}. For the exact code implementation, please refer to the accompanying source code.
 
 \subsection{FC-MRV Algorithm}
 
-Algorithm \ref{alg:fc-mrv} contains the pseudo-code of our FC-MRV recursive implementation in MATLAB. The initial call is performed by Algorithm\ref{alg:fc-mrv-main}. The successor state is determined by the recursive calls of FC-MRV. More specifically, the MRV method (line 8) chooses the unassigned column with the minimum number of remaining valid rows (choosing randomly if there are multiple). All valid rows are then checked one-by-one in lines 9-14. For each row, a new recursive call updates the current domain of the remaining unassigned columns (lines 1-5). The current domain is stored in a $n\times n$ matrix, which represents the board and containts 1 for valid positions and 0 for invalid ones. This cycle of recursions continues until either a complete solution is found, or until a column does not have any remaining valid positions left (which means that the previously selected row is not part of a valid configuration).
+Algorithm \ref{alg:fc-mrv} contains the pseudo-code of our FC-MRV recursive implementation in MATLAB. The initial call is performed by Algorithm\ref{alg:fc-mrv-main}. The successor state is determined by the recursive calls of FC-MRV. More specifically, the MRV method (line 8) chooses the unassigned column with the minimum number of remaining valid rows (choosing randomly if there are multiple). All valid rows are then checked one-by-one in lines 9-14. For each row, a new recursive call updates the current domain of the remaining unassigned columns (lines 1-5). The current domain is stored in a $n\times n$ matrix, which represents the board and contains 1 for valid positions and 0 for invalid ones. This cycle of recursions continues until either a complete solution is found, or until a column does not have any remaining valid positions left (which means that the previously selected row is not part of a valid configuration).
 
 \textbf{Performance Estimation:} In order to estimate the number of operations and the memory used we make the following assumptions: 1) Each call of find(), UpdateDomain(), MRV() and initialization of solution array $C$ costs $n$ operations. 2) Initialization of current domain matrix costs $n^2$ operations. 3) Current domain matrix costs $n^2$ arbitrary memory units, which is replicated for each recursive call. 4) Each recursion keeps two solution arrays (the old and new one) costing $2n$. 5) An array that keeps the unassigned queens costs $n$.
 
@@ -187,12 +187,27 @@ Algorithm \ref{alg:swap} contains the pseudo-code of our min-conflicts implement
 \end{algorithmic}
 \end{algorithm}
 
+\section{Results}
 
+Table \ref{table:execution-time} contains the real execution time of our algorithms for various number of queens, whereas Figure \ref{fig:execution-time} depicts the same results graphically. The results clearly show that FC-MRV approximates an exponential time complexity, which is the theoretical worst case time complexity of backtracking-based methods \citep{aima}. On the other hand, the min-conflicts and QS2 algorithms run in polynomial time, exhibiting a significantly better performance than FC-MRV for $n \ge 60$ queens. For a small number of queens, QS2 shows a worse temporal performance, probably because its time complexity constants dominate its running time. Nevertheless, the swapping mechanism of QS2 clearly outperforms the min-conflicts search for many queens.  Similar curves can be seen in Table \ref{table:operations} and Figure \ref{fig:operations}, where the average number of operations are depicted.
 
-%\section{Results}
+Finally, Table \ref{table:space} and Figure \ref{fig:space} contain our estimated measurements of each algorithm's memory usage. Again, min-conflicts and QS2 obviously have a linear space complexity (as expected from local search algorithms), since they only need to store the arrays $C$, $D_{\text{pos}}$, $D_{\text{neg}}$, $R$ and $Q$, whose length linearly depends  on $n$. In contrast, FC-MRV exhibits a huge space cost, even for smaller problem sizes, due to the rapidly increasing number of recursive calls.
 
-%\section{Conclusions}
+\input{images/execution-time}
 
+\input{images/operations}
+
+\input{images/space}
+
+\input{tables/execution-time}
+
+\input{tables/operations}
+
+\input{tables/space}
+
+\section{Conclusions}
+
+In this report we implemented in MATLAB three different methods for solving the $n$-queens problem. Our results clearly illustrated the superior performance of two local search algorithms (min-conflicts and QS2) against a typical backtracking-based method (FC-MRV). Both local search algorithms started from a random state, ensuring that no two queens can be found in the same column and row. A better initialization may have been a partial queen placement with no conflicts as shown in \citet{sosic91}. Finally, more general methods, such as bioinspired algorithms and neural networks, can also be used with success \citep{review}.
 
 
 

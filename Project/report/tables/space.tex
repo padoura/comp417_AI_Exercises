@@ -1,0 +1,84 @@
+\begin{table}[htpb]
+\centering
+\makebox{
+%\resizebox{!}{1cm}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+\multirow{2}{*}{Number of Queens $n$} & \multicolumn{3}{c|}{Memory (abritrary units)}\\
+\cline{2-4}
+& FC-MRV & Min-conflicts & QS2\\
+\hline
+10 & 4486 & 90 & 70\\
+\hline
+20 & 28853 & 180 & 140\\
+\hline
+30 & 99574 & 270 & 210\\
+\hline
+40 & 397412 & 360 & 280\\
+\hline
+50 & 940120 & 450 & 350\\
+\hline
+60 & 18963989 & 540 & 420\\
+\hline
+70 & 14634236 & 630 & 490\\
+\hline
+80 & 676954812 & 720 & 560\\
+\hline
+90 & - & 810 & 630\\
+\hline
+100 & - & 900 & 700\\
+\hline
+200 & - & 1800 & 1400\\
+\hline
+300 & - & 2700 & 2100\\
+\hline
+400 & - & 3600 & 2800\\
+\hline
+500 & - & 4500 & 3500\\
+\hline
+600 & - & 5400 & 4200\\
+\hline
+700 & - & 6300 & 4900\\
+\hline
+800 & - & 7200 & 5600\\
+\hline
+900 & - & 8100 & 6300\\
+\hline
+1000 & - & 9000 & 7000\\
+\hline
+2000 & - & 18000 & 14000\\ 
+\hline
+3000 & - & 27000 & 21000\\
+\hline
+4000 & - & 36000 & 28000\\
+\hline
+5000 & - & 45000 & 35000\\
+\hline
+6000 & - & 54000 & 42000\\
+\hline
+7000 & - & 63000 & 49000\\
+\hline
+8000 & - & 72000 & 56000\\
+\hline
+9000 & - & 81000 & 63000\\
+\hline
+10000 & - & 90000 & 70000\\
+\hline
+20000 & - & - & 140000\\
+\hline
+30000 & - & - & 210000\\ 
+\hline
+40000 & - & - & 280000\\
+\hline
+50000 & - & - & 350000\\
+\hline
+60000 & - & - & 420000\\
+\hline
+\end{tabular}
+}%}
+\caption{Memory usage of all algorithms for $n$-queens problem. For each problem size $n = \{10, 20,..., 100, 200,..., 1000, 2000,..., 10000,..., 60000\}$ results are averaged over 100 tries. FC-MRV and min-conflicts ran for size of up to 80 and 10000 queens respectively, due to their large running times. See Section \ref{sec:methods} for how memory usage is quantified in each method.}
+\label{table:space}
+\end{table}
+
+
+

@@ -156,8 +156,6 @@
       \range{pages}{4}
     \endentry
     \entry{aima}{book}{}
-      \true{moreauthor}
-      \true{morelabelname}
       \name{author}{2}{}{%
         {{hash=9ce1e6cbe6dc79fd521d7b8ba8e8c568}{%
            family={Russell},
@@ -171,18 +169,18 @@
            giveni={P\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Prentice Hall/Pearson Education,}%
+        {Prentice Hall}%
       }
-      \strng{namehash}{6a97eb7a76be2cb960aa064b3a7b54ee}
-      \strng{fullhash}{ad615d7674605b488c9a1fe23ffd0126}
-      \strng{authornamehash}{6a97eb7a76be2cb960aa064b3a7b54ee}
-      \strng{authorfullhash}{ad615d7674605b488c9a1fe23ffd0126}
+      \strng{namehash}{2aac780f5178f967e697079746f1645e}
+      \strng{fullhash}{2aac780f5178f967e697079746f1645e}
+      \strng{authornamehash}{2aac780f5178f967e697079746f1645e}
+      \strng{authorfullhash}{2aac780f5178f967e697079746f1645e}
       \field{sortinit}{2}
       \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Artificial intelligence}
-      \field{year}{2003}
+      \field{title}{Artificial Intelligence: A Modern Approach}
+      \field{year}{2002}
     \endentry
     \entry{engel07}{article}{}
       \name{author}{1}{}{%
@@ -271,6 +269,38 @@
       \field{year}{1991}
       \field{pages}{7}
       \range{pages}{1}
+    \endentry
+    \entry{review}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=89d5a8ea1bb179d2d1367e8bfc59b184}{%
+           family={Kaosar},
+           familyi={K\bibinitperiod},
+           given={Md\bibnamedelima Golam},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=19ce4b2f53547aa47844d2c4159c92f4}{%
+           family={Shorfuzzaman},
+           familyi={S\bibinitperiod},
+           given={Mohammad},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7dbbb72715703b425cfa95dabe8fb97a}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Sayed},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5da4233bfb591c86821dc17b15151bcb}
+      \strng{fullhash}{817f1cf2a792a7847d5b9e0f6a2d6b6d}
+      \strng{authornamehash}{5da4233bfb591c86821dc17b15151bcb}
+      \strng{authorfullhash}{817f1cf2a792a7847d5b9e0f6a2d6b6d}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 8th World Multi conference on Systemic, Cybernetics and Informatics (SCI 2004), Orlando, Florida, USA}
+      \field{title}{A Novel Approach to Solving N-Queens Problem}
+      \field{year}{2004}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
     \endentry
   \endsortlist
 \endrefsection

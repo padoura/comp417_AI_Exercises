@@ -1,0 +1,81 @@
+\begin{table}[htpb]
+\centering
+\makebox{
+%\resizebox{!}{1cm}{
+\begin{tabular}{| c | c | c | c |}
+\hline
+\multirow{2}{*}{Number of Queens $n$} & \multicolumn{3}{c|}{Time (s)}\\
+\cline{2-4}
+& FC-MRV & Min-conflicts & QS2\\
+\hline
+10 & 5.625 $\cdot 10^{-3}$ & 7.031 $\cdot 10^{-3}$ & 1.172 $\cdot 10^{-2}$\\
+\hline
+20 & 9.219 $\cdot 10^{-3}$ & 6.875 $\cdot 10^{-3}$ & 1.953 $\cdot 10^{-2}$\\
+\hline
+30 & 1.469 $\cdot 10^{-2}$ & 8.438 $\cdot 10^{-3}$ & 2.641 $\cdot 10^{-2}$\\
+\hline
+40 & 3.016 $\cdot 10^{-2}$ & 1.047 $\cdot 10^{-2}$ & 2.594 $\cdot 10^{-2}$\\
+\hline
+50 & 5.297 $\cdot 10^{-2}$ & 1.172 $\cdot 10^{-2}$ & 3.391 $\cdot 10^{-2}$\\
+\hline
+60 & 5.259 $\cdot 10^{-1}$ & 1.422 $\cdot 10^{-2}$ & 3.766 $\cdot 10^{-2}$\\
+\hline
+70 & 3.783 $\cdot 10^{-1}$ & 1.703 $\cdot 10^{-2}$ & 3.828 $\cdot 10^{-2}$\\
+\hline
+80 & 1.203 $\cdot 10^{1}$ & 1.922 $\cdot 10^{-2}$ & 3.281 $\cdot 10^{-2}$\\
+\hline
+90 & - & 2.219 $\cdot 10^{-2}$ & 2.875 $\cdot 10^{-2}$\\
+\hline
+100 & - & 2.656 $\cdot 10^{-2}$ & 3.469 $\cdot 10^{-2}$\\
+\hline
+200 & - & 5.844 $\cdot 10^{-2}$ & 3.703 $\cdot 10^{-2}$\\
+\hline
+300 & - & 1.106 $\cdot 10^{-1}$ & 4.625 $\cdot 10^{-2}$\\
+\hline
+400 & - & 1.716 $\cdot 10^{-1}$ & 5.406 $\cdot 10^{-2}$\\
+\hline
+500 & - & 2.397 $\cdot 10^{-1}$ & 6.703 $\cdot 10^{-2}$\\
+\hline
+600 & - & 3.400 $\cdot 10^{-1}$ & 7.766 $\cdot 10^{-2}$\\
+\hline
+700 & - & 4.291 $\cdot 10^{-1}$ & 9.266 $\cdot 10^{-2}$\\
+\hline
+800 & - & 5.373 $\cdot 10^{-1}$ & 9.922 $\cdot 10^{-2}$\\
+\hline
+900 & - & 6.597 $\cdot 10^{-1}$ & 1.089 $\cdot 10^{-1}$\\
+\hline
+1000 & - & 7.973 $\cdot 10^{-1}$ & 1.209 $\cdot 10^{-1}$\\
+\hline
+2000 & - & 2.793 $\cdot 10^{0}$ & 2.533 $\cdot 10^{-1}$\\
+\hline
+3000 & - & 5.979 $\cdot 10^{0}$ & 4.919 $\cdot 10^{-1}$\\
+\hline
+4000 & - & 1.028 $\cdot 10^{1}$ & 7.152 $\cdot 10^{-1}$\\
+\hline
+5000 & - & 1.575 $\cdot 10^{1}$ & 9.583 $\cdot 10^{-1}$\\
+\hline
+6000 & - & 2.244 $\cdot 10^{1}$ & 1.183 $\cdot 10^{0}$\\
+\hline
+7000 & - & 3.026 $\cdot 10^{1}$ & 1.430 $\cdot 10^{0}$\\
+\hline
+8000 & - & 3.907 $\cdot 10^{1}$ & 1.687 $\cdot 10^{0}$\\
+\hline
+9000 & - & 4.900 $\cdot 10^{1}$ & 2.004 $\cdot 10^{0}$\\
+\hline
+10000 & - & 6.019 $\cdot 10^{1}$ & 2.517 $\cdot 10^{0}$\\
+\hline
+20000 & - & - & 6.058 $\cdot 10^{0}$\\
+\hline
+30000 & - & - & 1.069 $\cdot 10^{1}$\\
+\hline
+40000 & - & - & 2.396 $\cdot 10^{1}$\\
+\hline
+50000 & - & - & 4.413 $\cdot 10^{1}$\\
+\hline
+60000 & - & - & 6.193 $\cdot 10^{1}$\\
+\hline
+\end{tabular}
+}%}
+\caption{Execution time of all algorithms for $n$-queens problem. For each problem size $n = \{10, 20,..., 100, 200,..., 1000, 2000,..., 10000,..., 60000\}$ results are averaged over 100 tries. FC-MRV and min-conflicts ran for size of up to 80 and 10000 queens respectively, due to their large running times.}
+\label{table:execution-time}
+\end{table}
